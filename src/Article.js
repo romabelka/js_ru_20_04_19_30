@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import CommentList from './CommentList';
 
 export default class Article extends Component {
 /*
@@ -10,12 +11,11 @@ export default class Article extends Component {
     }
 */
     state = {
-        isOpen: false,
-        foo: 'bar'
-    }
+        isOpen: false
+    };
 
     render() {
-        const {article} = this.props
+        const {article} = this.props;
         return (
             <section>
                 <h2 onClick={this.toggleOpen}>
@@ -27,13 +27,17 @@ export default class Article extends Component {
     }
 
     getBody() {
-        return this.state.isOpen && <div>{this.props.article.text}</div>
+        return this.state.isOpen &&
+            <div>
+                <div>{this.props.article.text}</div>
+                <CommentList comments={this.props.article.comments ? this.props.article.comments : []}/>
+            </div>;
     }
 
     toggleOpen = ev => {
         this.setState({
             isOpen: !this.state.isOpen
-        })
+        });
     }
 }
 
