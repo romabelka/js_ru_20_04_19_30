@@ -1,25 +1,25 @@
 import React, {Component} from 'react'
 import CommnetList from './CommentList'
 import PropTypes from 'prop-types'
+import toggleOpen from '../decorators/toggleOpen'
 
-export default class Article extends Component {
+class Article extends Component {
     static propTypes = {
         article: PropTypes.shape({
             title: PropTypes.string.isRequired,
             text: PropTypes.string,
             comments: PropTypes.array
-        })
-    }
-
-    state = {
-        isOpen: false
+        }),
+        //from toggleOpen decorator
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func
     }
 
     render() {
-        const {article} = this.props
+        const {article, toggleOpen} = this.props
         return (
             <section>
-                <h2 onClick={this.toggleOpen}>
+                <h2 onClick={toggleOpen}>
                     {article.title}
                 </h2>
                 {this.getBody()}
@@ -28,17 +28,13 @@ export default class Article extends Component {
     }
 
     getBody() {
-        return this.state.isOpen && (
+        return this.props.isOpen && (
             <div>
                 {this.props.article.text}
                 <CommnetList comments={this.props.article.comments}/>
             </div>
         )
     }
-
-    toggleOpen = (ev) => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
 }
+
+export default toggleOpen(Article)
