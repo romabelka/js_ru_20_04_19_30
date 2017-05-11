@@ -11,6 +11,7 @@ class Chart extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log('---', 'updating chart')
         //manage chart state manually
     }
 
@@ -20,6 +21,7 @@ class Chart extends Component {
             //do some cleanup
             return
         }
+        console.log('---', 'init chart')
         //do some charting using d3 or else
     }
 }
