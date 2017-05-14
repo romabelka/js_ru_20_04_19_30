@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import accordion from '../decorators/accordion'
 
 function ArticleList(props) {
-    const {toggleArticle, openArticleId} = props
+    const {toggleArticle, openItemId} = props
     const elements = props.articles.map(article => <li key={article.id}>
         <Article article={article}
-                 isOpen={article.id == openArticleId}
+                 isOpen={article.id == openItemId}
                  toggleOpen={toggleArticle(article.id)}/>
     </li>)
     return (

@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 
-export default (OriginalComponent) => class DecoratedComponent extends Component {
+export default (OriginalComponent) => class AccordionComponent extends Component {
 	state = {
-		openArticleId: null
+		openItemId: null
 	}
 
 	render() {
@@ -10,16 +10,16 @@ export default (OriginalComponent) => class DecoratedComponent extends Component
 	}
 
 	toggleArticle = id => event => {
-		let openArticleId;
+		let openItemId;
 		
-		if (this.state.openArticleId === id) {
-			openArticleId = null;
+		if (this.state.openItemId === id) {
+			openItemId = null;
 		} else {
-			openArticleId = id;
+			openItemId = id;
 		}
 
 		this.setState({
-			openArticleId: openArticleId
+			openItemId: openItemId
 		})
 	}
 }
