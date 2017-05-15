@@ -4,6 +4,7 @@ import ArticleList from './ArticleList'
 import Chart from './Chart'
 import UserForm from './UserForm'
 import Filters from './Filters/index'
+import Counter from './Counter'
 
 class App extends Component {
     static propTypes = {
@@ -24,6 +25,7 @@ class App extends Component {
     render() {
         return (
             <div>
+                <Counter />
                 <UserForm />
                 <Filters articles = {this.props.articles} />
                 <a href = "#" onClick = {this.updateCounter}>update chart</a>
