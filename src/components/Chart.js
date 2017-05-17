@@ -21,7 +21,6 @@ class Chart extends Component {
             //do some cleanup
             return
         }
-        console.log('---', 'init chart')
         //do some charting using d3 or else
     }
 }
