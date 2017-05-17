@@ -28,7 +28,6 @@ class Article extends Component {
     }
 
     componentWillUpdate() {
-        console.log('---', 'updating')
     }
 
     render() {
