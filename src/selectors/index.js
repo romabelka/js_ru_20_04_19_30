@@ -18,5 +18,5 @@ export const filteredArticlesSelector = createSelector(articlesGetter, filtersGe
 
 export const commentSelectorFactory = () => createSelector(commentsGetter, idGetter, (comments, id) => {
     console.log('---', 'recalc comment', id)
-    return comments.find(comment => comment.id == id)
+    return comments[id]
 })
