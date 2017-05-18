@@ -41,6 +41,14 @@ ArticleList.propTypes = {
     isItemOpened: PropTypes.func.isRequired
 }
 
-export default connect((state) => ({
-   articles: state.articles
-}))(accordion(ArticleList))
+export default connect((state) => {
+    const {selected, dateRange: {from, to}} = state.filters
+
+    return {
+        articles: state.articles.filter(article => {
+            const published = Date.parse(article.date)
+            return (!selected.length || selected.includes(article.id)) &&
+                (!from || !to || (published > from && published < to))
+        })
+    }
+})(accordion(ArticleList))
