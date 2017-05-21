@@ -14,7 +14,6 @@ export const filteredArticlesSelector = createSelector(articlesGetter, filtersGe
         return (!selected.length || selected.includes(id)) &&
             (!from || !to || (published > from && published < to))
     })
-    // return articles
 })
 
 export const commentSelectorFactory = () => createSelector(commentsGetter, idGetter, (comments, id) => {

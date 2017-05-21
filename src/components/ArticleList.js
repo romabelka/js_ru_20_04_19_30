@@ -9,7 +9,6 @@ import {filteredArticlesSelector} from '../selectors'
 class ArticleList extends Component {
     render() {
         const {articles, toggleOpenItem, isItemOpened} = this.props
-        console.log('---', 'rerendering ArticleList')
 
         const elements = articles.map(id => <li key={id}>
             <Article id = {id}
