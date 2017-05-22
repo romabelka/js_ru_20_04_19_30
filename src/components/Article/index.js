@@ -23,9 +23,6 @@ class Article extends Component {
         console.log('---', 'mounting')
     }
 */
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.isOpen != this.props.isOpen
-    }
 
     componentWillUpdate() {
         console.log('---', 'updating')
@@ -60,7 +57,7 @@ class Article extends Component {
         return this.props.isOpen && (
             <div>
                 {this.props.article.text}
-                <CommnetList comments={this.props.article.comments}/>
+                <CommnetList article = {this.props.article}/>
             </div>
         )
     }
