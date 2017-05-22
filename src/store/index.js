@@ -3,6 +3,7 @@ import reducer from '../reducer/index'
 import logger from '../middlewares/logger'
 import randomId from '../middlewares/randomId'
 import api from '../middlewares/api'
+import thunk from 'redux-thunk'
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -12,7 +13,7 @@ const composeEnhancers =
         }) : compose
 
 const enhancer = composeEnhancers(
-    applyMiddleware(randomId, api, logger)
+    applyMiddleware(thunk, randomId, api, logger)
     // other store enhancers if any
 )
 
