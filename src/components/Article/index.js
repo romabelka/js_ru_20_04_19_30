@@ -19,8 +19,8 @@ class Article extends Component {
         toggleOpen: PropTypes.func
     }
 
-    componentWillReceiveProps({article, loadArticle, isOpen}) {
-        if (isOpen && !this.props.isOpen) loadArticle(article.id)
+    componentWillReceiveProps({isOpen, article, loadArticle}) {
+        if (!article.text && !article.loading && isOpen && !this.props.isOpen) loadArticle(article.id)
     }
 
 /*
