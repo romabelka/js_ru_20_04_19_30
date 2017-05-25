@@ -1,37 +1,34 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ArticleList from './ArticleList'
-import Chart from './Chart'
 import UserForm from './UserForm'
 import Filters from './Filters/index'
 import Counter from './Counter'
+import {HashRouter as Router, Route, NavLink} from 'react-router-dom'
 
 class App extends Component {
     static propTypes = {
-        articles: PropTypes.array
     };
 
     state = {
         counter: 0
     }
 
-    updateCounter = (ev) => {
-        ev.preventDefault()
-        this.setState({
-            counter: this.state.counter + 1
-        })
-    }
-
     render() {
         return (
-            <div>
-                <Counter />
-                <UserForm />
-                <Filters articles = {this.props.articles} />
-                <a href = "#" onClick = {this.updateCounter}>update chart</a>
-                <ArticleList articles = {this.props.articles} />
-                <Chart articles = {this.props.articles} key={this.state.counter}/>
-            </div>
+            <Router>
+                <div>
+                    <UserForm />
+                    <ul>
+                        <li><NavLink to = '/counter' activeStyle = {{color: 'red'}}>Counter</NavLink></li>
+                        <li><NavLink to = '/articles' activeStyle = {{color: 'red'}}>Articles</NavLink></li>
+                        <li><NavLink to = '/filters' activeStyle = {{color: 'red'}}>Filters</NavLink></li>
+                    </ul>
+                    <Route path = '/counter' component = {Counter}/>
+                    <Route path = '/filters' component = {Filters} />
+                    <Route path = '/articles' component = {ArticleList} />
+                </div>
+            </Router>
         )
     }
 }

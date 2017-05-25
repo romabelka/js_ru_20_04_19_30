@@ -24,7 +24,7 @@ class CommentList extends Component {
         )
     }
 
-    getBody(props) {
+    getBody() {
         const {article: { loadedComments, loadingComments, id, comments = [] }, isOpen} = this.props
         if (!isOpen) return null
         if (loadingComments) return <Loader/>

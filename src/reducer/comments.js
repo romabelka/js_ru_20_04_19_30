@@ -1,4 +1,3 @@
-import {normalizedComments as defaultComments} from '../fixtures'
 import {ADD_COMMENT, LOAD_ARTICLE_COMMENTS, START, SUCCESS} from '../constants'
 import {arrayToMap} from '../utils'
 import {OrderedMap, Record} from 'immutable'
