@@ -20,7 +20,15 @@ class Article extends Component {
         toggleOpen: PropTypes.func
     }
 
-    componentWillReceiveProps({article, id, loadArticle}) {
+    componentDidMount() {
+        this.checkAndLoad(this.props)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.checkAndLoad(nextProps)
+    }
+
+    checkAndLoad({article, id, loadArticle}) {
         if (!article || (!article.text && !article.loading)) loadArticle(id)
     }
 
