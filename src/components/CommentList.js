@@ -25,16 +25,21 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const {article: { loadedComments, loadingComments, id, comments = [] }, isOpen} = this.props
+        const {article: { loadedComments, loadingComments, id, comments = [] }, isOpen, commentsData} = this.props
         if (!isOpen) return null
         if (loadingComments) return <Loader/>
         if (!loadedComments) return null
 
         if (!comments.length) return <div><p>No comments yet</p><CommentForm articleId = {id}/></div>
+
+        let extractedComments = comments.map((id) => {
+            return commentsData.getIn(['entities', id])
+        });
+
         return (
             <div>
                 <ul>
-                    {comments.map(id => <li key={id}><Comment id={id}/></li>)}
+                    {extractedComments.map(comment => <li key={comment.id}><Comment comment={comment}/></li>)}
                 </ul>
                 <CommentForm articleId = {id} />
             </div>
@@ -48,4 +53,8 @@ CommentList.propTypes = {
     article: PropTypes.object
 }
 
-export default connect(null, { loadArticlesComments })(toggleOpen(CommentList))
+export default connect((state => {
+    return {
+        commentsData: state.comments
+    }
+}), { loadArticlesComments })(toggleOpen(CommentList))
