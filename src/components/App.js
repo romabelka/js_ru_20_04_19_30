@@ -15,11 +15,27 @@ class App extends Component {
     static propTypes = {
     };
 
+    state = {
+        username: ''
+    }
+
+    static childContextTypes = {
+        user: PropTypes.string
+    }
+
+    getChildContext() {
+        return {
+            user: this.state.username
+        }
+    }
+
+    handleUserChange = (username) => this.setState({ username })
+
     render() {
         return (
             <Router history = {history}>
                 <div>
-                    <UserForm />
+                    <UserForm value = {this.state.username} onChange = {this.handleUserChange} />
                     <ul>
                         <li><NavLink to = '/counter' activeStyle = {{color: 'red'}}>Counter</NavLink></li>
                         <li><NavLink to = '/articles' activeStyle = {{color: 'red'}}>Articles</NavLink></li>
