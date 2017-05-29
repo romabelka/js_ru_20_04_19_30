@@ -4,8 +4,11 @@ import ArticlesPage from '../route_handlers/ArticlesPage'
 import UserForm from './UserForm'
 import Filters from './Filters/index'
 import Counter from './Counter'
+import ErrorPage from './ErrorPage'
 import CommentsPage from '../route_handlers/CommentsPage'
-import {BrowserRouter as Router, Redirect, Route, NavLink, Switch} from 'react-router-dom'
+import {Redirect, Route, NavLink, Switch} from 'react-router-dom'
+import {ConnectedRouter as Router} from 'react-router-redux'
+import history from '../history'
 
 class App extends Component {
     static propTypes = {
@@ -13,7 +16,7 @@ class App extends Component {
 
     render() {
         return (
-            <Router>
+            <Router history = {history}>
                 <div>
                     <UserForm />
                     <ul>
@@ -27,6 +30,7 @@ class App extends Component {
                         <Route path = '/articles/new' render = {this.getSomeArticleText} />
                         <Route path = '/articles' component = {ArticlesPage} />
                         <Route path = '/comments' component={CommentsPage} />
+                        <Route path = '/error' component={ErrorPage} />
                     </Switch>
                 </div>
             </Router>
