@@ -6,6 +6,7 @@ import Filters from './Filters/index'
 import Counter from './Counter'
 import ErrorPage from './ErrorPage'
 import CommentsPage from '../route_handlers/CommentsPage'
+import NotFoundPage from '../route_handlers/NotFoundPage'
 import {Redirect, Route, NavLink, Switch} from 'react-router-dom'
 import {ConnectedRouter as Router} from 'react-router-redux'
 import history from '../history'
@@ -29,8 +30,9 @@ class App extends Component {
                         <Route path = '/filters' component = {Filters} />
                         <Route path = '/articles/new' render = {this.getSomeArticleText} />
                         <Route path = '/articles' component = {ArticlesPage} />
-                        <Route path = '/comments' component={CommentsPage} />
-                        <Route path = '/error' component={ErrorPage} />
+                        <Route path = '/comments' component = {CommentsPage} />
+                        <Route path = '/error' component = {ErrorPage} />
+                        <Route path = '*' component = {NotFoundPage}/>
                     </Switch>
                 </div>
             </Router>
