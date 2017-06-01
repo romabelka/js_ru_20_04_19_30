@@ -4,6 +4,7 @@ import CommentForm from './CommentForm/index'
 import toggleOpen from '../decorators/toggleOpen'
 import PropTypes from 'prop-types'
 import Loader from './Loader'
+import LocalizedText from './LocalizedText'
 import {loadArticlesComments} from '../AC'
 import {connect} from 'react-redux'
 
@@ -24,7 +25,7 @@ class CommentList extends Component {
 
         return (
             <div>
-                <a href="#" onClick={toggleOpen}>{linkText}</a>
+                <a href="#" onClick={toggleOpen}><LocalizedText>{linkText}</LocalizedText></a>
                 {this.getBody()}
             </div>
         )
@@ -36,7 +37,11 @@ class CommentList extends Component {
         if (loadingComments) return <Loader/>
         if (!loadedComments) return null
 
-        if (!comments.length) return <div><p>No comments yet</p><CommentForm articleId = {id}/></div>
+        if (!comments.length) return <div>
+            <p><LocalizedText>No comments yet</LocalizedText></p>
+            <CommentForm articleId = {id}/>
+        </div>
+
         return (
             <div>
                 <ul>
@@ -54,4 +59,4 @@ CommentList.propTypes = {
     article: PropTypes.object
 }
 
-export default connect(null, { loadArticlesComments })(toggleOpen(CommentList))
+export default connect(null, { loadArticlesComments }, null, {pure: false})(toggleOpen(CommentList))

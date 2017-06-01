@@ -6,6 +6,7 @@ import Loader from '../Loader'
 import './style.css'
 import {connect} from 'react-redux'
 import {deleteArticle, loadArticle} from '../../AC/index'
+import LocalizedText from '../LocalizedText'
 
 class Article extends Component {
     static propTypes = {
@@ -47,7 +48,7 @@ class Article extends Component {
                 <h3>
                     User: {this.context.user}
                 </h3>
-                <a href = "#" onClick = {this.handleDelete}>delete me</a>
+                <a href = "#" onClick = {this.handleDelete}><LocalizedText>delete me</LocalizedText></a>
                 <CSSTransitionGroup
                     transitionName = "article"
                     transitionEnterTimeout = {500}
