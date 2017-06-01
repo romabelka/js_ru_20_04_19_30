@@ -11,7 +11,7 @@ class Article extends Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         article: PropTypes.shape({
-            title: PropTypes.string.isRequired,
+            title: PropTypes.string,
             text: PropTypes.string,
             comments: PropTypes.array
         }),
@@ -36,18 +36,7 @@ class Article extends Component {
         if (!article || (!article.text && !article.loading)) loadArticle(id)
     }
 
-/*
-    componentWillMount() {
-        console.log('---', 'mounting')
-    }
-*/
-
-    componentWillUpdate() {
-        console.log('---', 'updating')
-    }
-
     render() {
-        console.log('---', 3)
         const {article, toggleOpen} = this.props
         if (!article) return null
         return (

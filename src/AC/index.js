@@ -75,7 +75,7 @@ export function loadArticle(id) {
 
                     dispatch(replace('/error'))
                 })
-        }, 1000)
+        }, 500)
     }
 }
 
